@@ -95,6 +95,9 @@ def word_score(word, available):
     """
     score = 0
 
+    word = word.lower()
+    available = available.lower()
+
     if len(word) == 4:
         score = 1
     elif len(word) > 4:
