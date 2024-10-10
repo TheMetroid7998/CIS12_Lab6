@@ -75,9 +75,15 @@ def letter_conversion(letter):
     else:
         raise ValueError("Input must be a string (letter) or an integer (Unicode code).")
 
+def alpha_letter_to_alpha_index(letter):
+    alpha_letter = str(letter).upper()
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    alpha_index = alphabet.find(alpha_letter)
+    return alpha_index
+
 def vigenere_index(key, ptext):
-    k_index = letter_conversion(key)
-    p_index = letter_conversion(ptext)
+    k_index = alpha_letter_to_alpha_index(key)
+    p_index = alpha_letter_to_alpha_index(ptext)
     c_index = (k_index + p_index) % 26 + 65 # needs minus 2 but that breaks things
     c_text = letter_conversion(c_index)
     return c_text
@@ -98,12 +104,15 @@ def plaintext_index(key, ctext):
     p_text = letter_conversion(p_index)
     return p_text
 
+def vigenere_decrypt(key, ciphertext):
+    plaintext = ''
+    key_length = len(key)
+    for i, char, in enumerate(ciphertext):
+        plaintext += plaintext_index(key[i%key_length], char)
+    print(plaintext)
+    return plaintext
 
+#plaintext = 'SEEYOUNEXTMISSION'; keyword = 'METROID'; ciphertext = 'EIXPCCQQBMDWAVUSG'
 
-#plaintext = 'SEEYOUNEXTMISSION'
-#keyword = 'METROID'
-#ciphertext = 'EIXPCCQQBMDWAVUSG'
-
-#vigenere_index('M', 'S')
-#vigenere_encrypt('METROID', 'CDEFGHIJKLMNOPQRSTUVWXYZ')
+#print(vigenere_index('M', 'S'))
 vigenere_encrypt('METROID', 'SEEYOUNEXTMISSION')
