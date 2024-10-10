@@ -84,7 +84,7 @@ def alpha_letter_to_alpha_index(letter):
 def vigenere_index(key, ptext):
     k_index = alpha_letter_to_alpha_index(key)
     p_index = alpha_letter_to_alpha_index(ptext)
-    c_index = (k_index + p_index) % 26 + 65 # needs minus 2 but that breaks things
+    c_index = (k_index + p_index) % 26 + 65
     c_text = letter_conversion(c_index)
     return c_text
 
@@ -98,8 +98,8 @@ def vigenere_encrypt(key, plaintext):
     return ciphertext
 
 def plaintext_index(key, ctext):
-    k_index = letter_conversion(key)
-    c_index = letter_conversion(ctext)
+    k_index = alpha_letter_to_alpha_index(key)
+    c_index = alpha_letter_to_uni_index(ctext)
     p_index = (c_index - k_index) % 26 + 65
     p_text = letter_conversion(p_index)
     return p_text
@@ -115,4 +115,6 @@ def vigenere_decrypt(key, ciphertext):
 #plaintext = 'SEEYOUNEXTMISSION'; keyword = 'METROID'; ciphertext = 'EIXPCCQQBMDWAVUSG'
 
 #print(vigenere_index('M', 'S'))
-vigenere_encrypt('METROID', 'SEEYOUNEXTMISSION')
+#vigenere_encrypt('METROID', 'SEEYOUNEXTMISSION')
+print(plaintext_index('M', 'E'))
+#vigenere_decrypt('METROID', 'EIXPCCQQBMDWAVUSG')
