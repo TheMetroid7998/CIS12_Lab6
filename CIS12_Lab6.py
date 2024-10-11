@@ -108,7 +108,7 @@ def vigenere_conversion():
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
         print(f"MAIN MENU\nPlease select Play to start the movie- no wait that's not right...")
-        text = input("Please enter the text you wish to encrypy or decrypt:\n").upper().strip()
+        text = input("Please enter the text you wish to encrypt or decrypt:\n").upper().strip()
         if not all(char in alphabet for char in text):
             raise Exception("Spaces, numbers, and other ASCII symbols are not valid for this operation.")
 
